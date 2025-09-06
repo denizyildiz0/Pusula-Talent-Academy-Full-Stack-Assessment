@@ -28,11 +28,11 @@ public static class FilterPeopleCase
             .ToList(); //Listeleme i?lemi
 
         var names = people.Select(p => p.Name).OrderBy(n => n).ToList();// ?simleri alfabetik yapmak için kullan?yoruz
-        var totalSalary = people.Sum(p => p.Salary);// Toplam maa?? hesapl?yoruz
+        var totalSalary = people.Sum(p => p.Salary);// Toplam maa? hesapl?yoruz
         var count = people.Count;// Ki?i say?s?n? alma i?lemini yap?yoruz
-        var averageSalary = count > 0 ? totalSalary / count : 0;// Ortalama maa?? burada hesapl?yoruz
-        var maxSalary = count > 0 ? people.Max(p => p.Salary) : 0;// Maksimum maa?? burada hesapl?yoruz
-        var minSalary = count > 0 ? people.Min(p => p.Salary) : 0;// Minimum maa?? burada hesapl?yoruz
+        var averageSalary = count > 0 ? totalSalary / count : 0;// Ortalama maa? burada hesapl?yoruz
+        var maxSalary = count > 0 ? people.Max(p => p.Salary) : 0;// Maksimum maa? burada hesapl?yoruz
+        var minSalary = count > 0 ? people.Min(p => p.Salary) : 0;// Minimum maa? burada hesapl?yoruz
 
         var result = new// Sonuçlar? anonim tipte tutuyoruz
         {
