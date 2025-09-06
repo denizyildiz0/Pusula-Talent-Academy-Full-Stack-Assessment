@@ -10,45 +10,45 @@ public static class SubArrayCase
 {
     public static string MaxIncreasingSubArrayAsJson(List<int> numbers)
     {
-        //Öncelikle parametre olarak gelen listeyi kontrol ediyoruz. Bo? mu de?il mi diye.
-        //E?er bo?sa veya null ise bo? bir liste döndürme i?lemi yap?yoruz
+        //Ã–ncelikle parametre olarak gelen listeyi kontrol ediyoruz. BoÅŸ mu deÄŸil mi diye.
+        //EÄŸer boÅŸsa veya null ise boÅŸ bir liste dÃ¶ndÃ¼rme iÅŸlemi yapÄ±yoruz
         if (numbers == null || numbers.Count == 0)
         {
             return JsonSerializer.Serialize(new List<int>());
         }
 
-        //En uzun artan alt diziyi tutacak listeyi tan?ml?yoruz.
+        //En uzun artan alt diziyi tutacak listeyi tanÄ±mlÄ±yoruz.
         List<int> maxSubArray = new List<int>();
 
-        //Geçici alt dizi tan?ml?yoruz ve ilk eleman? ekliyoruz.
+        //GeÃ§ici alt dizi tanÄ±mlÄ±yoruz ve ilk elemanÄ± ekliyoruz.
         List<int> currentSubArray = new List<int> { numbers[0] };
 
         for (int i = 1; i < numbers.Count; i++)
         {
-            //E?er mevcut eleman, geçerli alt dizinin son eleman?ndan büyükse, geçerli alt diziye ekliyoruz.
+            //EÄŸer mevcut eleman, geÃ§erli alt dizinin son elemanÄ±ndan bÃ¼yÃ¼kse, geÃ§erli alt diziye ekliyoruz.
             if (numbers[i] > numbers[i - 1])
             {
                 currentSubArray.Add(numbers[i]);
             }
             else
             {
-                //Geçerli alt dizinin toplam?, en büyük alt dizinin toplam?ndan büyükse, en büyük alt diziyi güncelliyoruz.
+                //GeÃ§erli alt dizinin toplamÄ±, en bÃ¼yÃ¼k alt dizinin toplamÄ±ndan bÃ¼yÃ¼kse, en bÃ¼yÃ¼k alt diziyi gÃ¼ncelliyoruz.
                 if (currentSubArray.Sum() > maxSubArray.Sum())
                 {
                     maxSubArray = new List<int>(currentSubArray);
                 }
-                //Geçerli alt diziyi s?f?rlay?p, mevcut eleman? ekliyoruz.
+                //GeÃ§erli alt diziyi sÄ±fÄ±rlayÄ±p, mevcut elemanÄ± ekliyoruz.
                 currentSubArray = new List<int> { numbers[i] };
             }
         }
 
-        //Son kontrolü yap?yoruz. E?er döngü bitti?inde geçerli alt dizinin toplam? en büyük alt dizinin toplam?ndan büyükse, en büyük alt diziyi güncelliyoruz.
+        //Son kontrolÃ¼ yap?yoruz. EÄŸer dÃ¶ngÃ¼ bittiÄŸinde geÃ§erli alt dizinin toplamÄ± en bÃ¼yÃ¼k alt dizinin toplamÄ±ndan bÃ¼yÃ¼kse, en bÃ¼yÃ¼k alt diziyi gÃ¼ncelliyoruz.
         if (currentSubArray.Sum() > maxSubArray.Sum())
         {
             maxSubArray = currentSubArray;
         }
 
-        //Sonuç olarak en uzun artan alt diziyi JSON format?nda döndürüyoruz.
+        //SonuÃ§ olarak en uzun artan alt diziyi JSON formatÄ±nda dÃ¶ndÃ¼rÃ¼yoruz.
         return JsonSerializer.Serialize(maxSubArray);
     }
 }
